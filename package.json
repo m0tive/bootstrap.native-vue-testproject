@@ -4,11 +4,15 @@
   "description": "Test bootstrap project wihtout jquery",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:less": "lessc --source-map --include-path=./node_modules/bootstrap/less ./less/index.less ./public/css/app.css",
+    "build": "npm run build:less"
   },
   "author": "Peter Dodds",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2"
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "less": "^2.7.3"
   }
 }
