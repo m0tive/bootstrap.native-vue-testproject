@@ -2,12 +2,12 @@
   "name": "bootstrap_native_test",
   "version": "1.0.0",
   "description": "Test bootstrap project wihtout jquery",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline  --source-map ./less/index.less ./public/bundle.css",
     "build:js": "browserify --debug ./js/main.js --outfile=./public/bundle.js",
-    "build": "npm run -s build:css & npm run -s build:js"
+    "build": "npm run -s build:css & npm run -s build:js",
+    "prestart": "npm run -s build"
   },
   "author": "Peter Dodds",
   "license": "MIT",
