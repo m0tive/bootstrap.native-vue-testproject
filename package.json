@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:less": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline --source-map-map-inline  ./less/index.less ./public/css/app.css",
-    "build:js": "browserify --debug ./js/main.js > ./public/js/bundle.js",
-    "build": "npm run -s build:less & npm run -s build:js"
+    "build:css": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline  --source-map ./less/index.less ./public/bundle.css",
+    "build:js": "browserify --debug ./js/main.js --outfile=./public/bundle.js",
+    "build": "npm run -s build:css & npm run -s build:js"
   },
   "author": "Peter Dodds",
   "license": "MIT",
