@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:less": "lessc --clean-css --include-path=./node_modules/bootstrap/less --source-map-less-inline --source-map-map-inline  ./less/index.less ./public/css/app.css",
+    "build:less": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline --source-map-map-inline  ./less/index.less ./public/css/app.css",
     "build:js": "browserify --debug ./js/main.js > ./public/js/bundle.js",
     "build": "npm run -s build:less & npm run -s build:js"
   },
@@ -16,6 +16,7 @@
     "bootstrap.native": "^2.0.19",
     "browserify": "^14.5.0",
     "express": "^4.16.2",
+    "font-awesome": "^4.7.0",
     "less": "^2.7.3",
     "less-plugin-clean-css": "^1.5.1"
   }
