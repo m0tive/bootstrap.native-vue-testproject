@@ -8,13 +8,11 @@ const renderer = require('vue-server-renderer').createRenderer({
 app.use(express.static("public"));
 app.use(express.static("node_modules/font-awesome"));
 
+import { createApp } from './js/entry-server.js';
+console.log(createApp);
+
 app.get('/', (req, res) => {
-  const app = new Vue({
-    data: {
-      url: req.url
-    },
-    template: `<div>The visited URL is: {{ url }}</div>`
-  })
+  const app = createApp();
 
   renderer.renderToString(app, (err, html) => {
     if (err) {

@@ -5,12 +5,16 @@
   "main": "server.js",
   "scripts": {
     "build:css": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline  --source-map ./less/index.less ./public/bundle.css",
-    "build:js": "browserify --debug ./js/main.js --outfile=./public/bundle.js",
-    "build": "npm run -s build:css & npm run -s build:js",
-    "prestart": "npm run -s build"
+    "build:js": "browserify --debug ./js/entry-client.js --outfile=./public/bundle.js",
+    "build:ssr": "browserify --node --standalone ./js/entry-server.js --outfile=./server-bundle.js",
+    "build": "npm run -s build:css & npm run -s build:js & npm run -s build:ssr",
+
+    "prestart": "npm run -s build",
+    "start": "node server.js"
   },
   "browserify": {
     "transform": [
+      "babelify",
       "vueify"
     ]
   },
@@ -19,6 +23,7 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
     "bootstrap": "^3.3.7",
     "bootstrap.native": "^2.0.19",
     "browserify": "^14.5.0",
@@ -26,8 +31,8 @@
     "font-awesome": "^4.7.0",
     "less": "^2.7.3",
     "less-plugin-clean-css": "^1.5.1",
-    "vue-server-renderer": "^2.5.5",
     "vue": "^2.5.6",
+    "vue-server-renderer": "^2.5.5",
     "vueify": "^9.4.1"
   }
 }
