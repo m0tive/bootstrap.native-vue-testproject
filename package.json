@@ -4,11 +4,19 @@
   "description": "Test bootstrap project wihtout jquery",
   "main": "server.js",
   "scripts": {
-    "build:css": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline  --source-map ./less/index.less ./public/bundle.css",
-    "build:js": "cross-env NODE_ENV=development browserify --debug ./js/main.js --outfile=./public/bundle.js",
-    "build": "npm run -s build:css & npm run -s build:js",
+    "build:prod:css": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less ./public/bundle.css",
+    "build:dev:css": "lessc --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline  --source-map ./less/index.less ./public/bundle.css",
+    "build:prod:js": "cross-env NODE_ENV=production browserify ./js/main.js | uglifyjs -m > ./public/bundle.js",
+    "build:dev:js": "cross-env NODE_ENV=development browserify --debug ./js/main.js --outfile=./public/bundle.js",
+    "build:dev": "npm-run-all -p build:dev:*",
+    "build:prod": "npm-run-all -p build:prod:*",
+    "build": "npm run -s build:prod",
     "prestart": "npm run -s build",
-    "watch": "npm-watch"
+    "start:dev": "cross-env NODE_ENV=development node server.js",
+    "start:pod": "cross-env NODE_ENV=production node server.js",
+    "start": "npm run -s start:prod",
+    "watch": "npm-watch",
+    "dev": "npm-run-all -p watch start:dev"
   },
   "watch": {
     "build:js": "js/*.js",
@@ -39,6 +47,8 @@
     "font-awesome": "^4.7.0",
     "less": "^2.7.3",
     "less-plugin-clean-css": "^1.5.1",
+    "npm-run-all": "^4.1.2",
+    "uglify-es": "^3.1.10",
     "vue": "^2.5.6",
     "vueify": "^9.4.1"
   },
