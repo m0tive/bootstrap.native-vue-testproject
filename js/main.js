@@ -1,5 +1,8 @@
 require('bootstrap.native');
-require('livejs');
+if (process.env.NODE_ENV !== "production") {
+    require('livejs');
+}
+
 const Vue = require('vue');
 const App = require('./app.vue');
 
