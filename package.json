@@ -7,7 +7,17 @@
     "build:css": "lessc --clean-css --include-path=./node_modules/bootstrap/less:./node_modules/font-awesome/less --source-map-less-inline  --source-map ./less/index.less ./public/bundle.css",
     "build:js": "browserify --debug ./js/main.js --outfile=./public/bundle.js",
     "build": "npm run -s build:css & npm run -s build:js",
-    "prestart": "npm run -s build"
+    "prestart": "npm run -s build",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "build:js": "js/*.js",
+    "build:css": {
+      "patterns": [
+        "less"
+      ],
+      "extensions": "less"
+    }
   },
   "browserify": {
     "transform": [
@@ -28,5 +38,8 @@
     "less-plugin-clean-css": "^1.5.1",
     "vue": "^2.5.6",
     "vueify": "^9.4.1"
+  },
+  "devDependencies": {
+    "npm-watch": "^0.3.0"
   }
 }
