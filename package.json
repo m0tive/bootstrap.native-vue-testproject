@@ -19,8 +19,13 @@
     "dev": "npm-run-all -p watch start:dev"
   },
   "watch": {
-    "build:js": "js/*.js",
-    "build:css": {
+    "build:dev:js": {
+      "patterns": [
+        "js"
+      ],
+      "extensions": "js,vue"
+    },
+    "build:dev:css": {
       "patterns": [
         "less"
       ],
